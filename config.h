@@ -19,7 +19,7 @@ static int borderpx = 2;
  */
 static char *shell = "/bin/sh";
 char *utmp = NULL;
-char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
+char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 115200";
 
 /* identification sequence returned in DA and DECID */
 char *vtiden = "\033[?6c";
@@ -203,8 +203,8 @@ ResourcePref resources[] = {
  */
 static MouseShortcut mshortcuts[] = {
 	/* button               mask            string */
-	{ Button4,              XK_NO_MOD,      "\031" },
-	{ Button5,              XK_NO_MOD,      "\005" },
+//	{ Button4,              XK_NO_MOD,      "\031" },
+//	{ Button5,              XK_NO_MOD,      "\005" },
 };
 
 /* Internal keyboard shortcuts. */
@@ -213,10 +213,12 @@ static MouseShortcut mshortcuts[] = {
 
 MouseKey mkeys[] = {
 	/* button               mask            function        argument */
-	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
-	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
-	{ Button4,              MODKEY,         kscrollup,      {.i =  1} },
-	{ Button5,              MODKEY,         kscrolldown,    {.i =  1} },
+	{ Button4,              ShiftMask | ControlMask,      kscrollup,      {.i =  30} },
+	{ Button5,              ShiftMask | ControlMask,      kscrolldown,    {.i =  30} },
+	{ Button4,              ShiftMask,      kscrollup,      {.i =  12} },
+	{ Button5,              ShiftMask,      kscrolldown,    {.i =  12} },
+	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  4} },
+	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  4} },
 	{ Button4,              TERMMOD,        zoom,           {.f =  +1} },
 	{ Button5,              TERMMOD,        zoom,           {.f =  -1} },
 };
